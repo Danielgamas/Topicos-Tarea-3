@@ -8,21 +8,22 @@ class Token:
     valor: str
 
 # Definimos las expresiones regulares para cada tipo de token
+# Los nombres de los tokens se encuentran en español para mostrarlos así en la interfaz
 TOKEN_SPEC = [
-    ("NUMBER",   r"\d+\.?\d*"),      # Números enteros o decimales
-    ("EQ",       r"=="),              # Igualdad
-    ("NE",       r"!="),             # Distinto
-    ("GE",       r">="),             # Mayor o igual
-    ("LE",       r"<="),             # Menor o igual
-    ("GT",       r">"),              # Mayor que
-    ("LT",       r"<"),              # Menor que
-    ("ASSIGN",   r"="),              # Asignación
-    ("OP",       r"[+\-*/^]"),      # Operadores aritméticos
-    ("LPAREN",   r"\("),            # Paréntesis izquierdo
-    ("RPAREN",   r"\)"),            # Paréntesis derecho
-    ("IDENT",    r"[A-Za-z_]+"),     # Variables
-    ("SKIP",     r"[ \t]+"),        # Espacios en blanco
-    ("MISMATCH", r".")               # Cualquier otro carácter
+    ("NUMERO",         r"\d+\.?\d*"),  # Números enteros o decimales
+    ("IGUAL",          r"=="),           # Igual
+    ("NO_IGUAL",       r"!="),           # Distinto
+    ("MAYOR_IGUAL",    r">="),          # Mayor o igual
+    ("MENOR_IGUAL",    r"<="),          # Menor o igual
+    ("MAYOR_QUE",      r">"),           # Mayor que
+    ("MENOR_QUE",      r"<"),           # Menor que
+    ("ASIGNACION",     r"="),           # Asignación
+    ("OPERADOR",       r"[+\-*/^]"),   # Operadores aritméticos
+    ("PAREN_IZQ",      r"\("),         # Paréntesis izquierdo
+    ("PAREN_DER",      r"\)"),         # Paréntesis derecho
+    ("IDENTIFICADOR",  r"[A-Za-z_]+"),  # Identificadores
+    ("ESPACIO",        r"[ \t]+"),     # Espacios en blanco
+    ("DESCONOCIDO",    r".")           # Cualquier otro carácter
 ]
 
 def analizar(cadena: str) -> List[Token]:
@@ -33,9 +34,9 @@ def analizar(cadena: str) -> List[Token]:
     for match in regex.finditer(cadena):
         tipo = match.lastgroup
         valor = match.group()
-        if tipo == "SKIP":
+        if tipo == "ESPACIO":
             continue
-        if tipo == "MISMATCH":
+        if tipo == "DESCONOCIDO":
             raise ValueError(f"Carácter inesperado: {valor}")
         tokens.append(Token(tipo, valor))
     return tokens

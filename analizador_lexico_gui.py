@@ -10,22 +10,22 @@ class Token:
     tipo: str
     valor: str
 
-# Expresiones regulares para cada tipo de token
+# Expresiones regulares para cada tipo de token (nombres en español)
 TOKEN_SPEC = [
-    ("NUMBER",   r"\d+\.?\d*"),
-    ("EQ",       r"=="),
-    ("NE",       r"!="),
-    ("GE",       r">="),
-    ("LE",       r"<="),
-    ("GT",       r">"),
-    ("LT",       r"<"),
-    ("ASSIGN",   r"="),
-    ("OP",       r"[+\-*/^]"),
-    ("LPAREN",   r"\("),
-    ("RPAREN",   r"\)"),
-    ("IDENT",    r"[A-Za-z_]+"),
-    ("SKIP",     r"[ \t]+"),
-    ("MISMATCH", r".")
+    ("NUMERO",         r"\d+\.?\d*"),
+    ("IGUAL",          r"=="),
+    ("NO_IGUAL",       r"!="),
+    ("MAYOR_IGUAL",    r">="),
+    ("MENOR_IGUAL",    r"<="),
+    ("MAYOR_QUE",      r">"),
+    ("MENOR_QUE",      r"<"),
+    ("ASIGNACION",     r"="),
+    ("OPERADOR",       r"[+\-*/^]"),
+    ("PAREN_IZQ",      r"\("),
+    ("PAREN_DER",      r"\)"),
+    ("IDENTIFICADOR",  r"[A-Za-z_]+"),
+    ("ESPACIO",        r"[ \t]+"),
+    ("DESCONOCIDO",    r".")
 ]
 
 
@@ -37,9 +37,9 @@ def analizar(cadena: str) -> List[Token]:
     for match in regex.finditer(cadena):
         tipo = match.lastgroup
         valor = match.group()
-        if tipo == "SKIP":
+        if tipo == "ESPACIO":
             continue
-        if tipo == "MISMATCH":
+        if tipo == "DESCONOCIDO":
             raise ValueError(f"Carácter inesperado: {valor}")
         tokens.append(Token(tipo, valor))
     return tokens
