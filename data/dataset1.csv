@@ -1,0 +1,11 @@
+index,edad,genero,ingresos,altura,ciudad,nivel_educacion,hijos
+0,53,MASCULINO,62000,1.74,New York,Bachelor,2
+1,45,Femenino,48000,1.65,Houston,Master,1
+2,166,Masculino,75000,2.05,Chicago,phd,3
+3,-10,Femenino,-5000,1.68,NaN,Bachelors,0
+4,29,,42000,1.59,Phoenix,mre,1
+5,34,Femenino,38000,1.7,Los Ángeles,Bachelor ,2
+6,58,Masculino,200000,1.92,New York,No education,-2
+7,41,Femenino,52000,1.61,NaN,,5
+8,50,masculino,61000,1.75,Los Ángeles,Bachelors ,2.5
+9,87,,31000,1.78,Chicago,High School,NaN
