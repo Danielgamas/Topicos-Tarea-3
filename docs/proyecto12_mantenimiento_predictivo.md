@@ -115,6 +115,9 @@ La demo incluida en este repositorio genera datos sintéticos, entrena un modelo
    - `figures/`: curva Precision-Recall (`pr_curve_test.png`).
    - `models/`: pipeline entrenado en formato `joblib` (`rf_pdm_pipeline.joblib`).
 
+   Al arrancar, el programa imprime las versiones detectadas de las dependencias clave (incluyendo `pandas`). Si alguna falta, se
+   detiene y muestra instrucciones para instalarla mediante `pip install -r requirements.txt`.
+
    En la consola verás un `classification_report` y el valor de Average Precision (PR-AUC). Si `joblib` no está disponible, el script avisará que omite el guardado del modelo.
 
 4. **Desactivar el entorno virtual (opcional)**

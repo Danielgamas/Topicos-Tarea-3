@@ -64,15 +64,27 @@ def main() -> None:
         precision_recall_curve,
     )
     from sklearn.model_selection import train_test_split  # noqa: F401 - mantenido por claridad histórica
+    import sklearn
     from sklearn.pipeline import Pipeline
     from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
+    import matplotlib
     import matplotlib.pyplot as plt
 
     try:
         import joblib
     except ModuleNotFoundError:
         joblib = None
+
+    print("=== Dependencias detectadas ===")
+    print(f"numpy: {np.__version__}")
+    print(f"pandas: {pd.__version__}")
+    print(f"scikit-learn: {sklearn.__version__}")
+    print(f"matplotlib: {matplotlib.__version__}")
+    if joblib is not None:
+        print(f"joblib: {joblib.__version__}")
+    else:
+        print("joblib: no disponible (se omitirá el guardado del modelo)")
 
     np.random.seed(42)
 
