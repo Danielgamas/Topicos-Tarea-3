@@ -84,3 +84,43 @@ Reducir paros no planeados y los costos asociados al mantenimiento mediante la p
 6. Validar con TimeSeriesSplit y medir PR-AUC.
 7. Implementar API/servicio de scoring y alertas.
 8. Medir MTBF, paros evitados y ahorro en un piloto de 1 mes.
+
+## ¿Cómo ejecutar la demo `pdm_run.py`?
+La demo incluida en este repositorio genera datos sintéticos, entrena un modelo de clasificación binaria y exporta artefactos (datasets, figura y modelo). Sigue estos pasos:
+
+1. **Crear y activar un entorno virtual (opcional pero recomendado)**
+
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate  # En Windows usa: .venv\Scripts\activate
+   ```
+
+2. **Instalar dependencias**
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+   Si tu entorno ya cuenta con las bibliotecas requeridas, puedes omitir este paso.
+
+3. **Ejecutar la demo**
+
+   ```bash
+   python pdm_run.py
+   ```
+
+   El script creará tres carpetas en la raíz del proyecto:
+
+   - `datasets/`: CSV con los datos simulados (`sensores_raw.csv`, `eventos.csv`, `features_labels.csv`).
+   - `figures/`: curva Precision-Recall (`pr_curve_test.png`).
+   - `models/`: pipeline entrenado en formato `joblib` (`rf_pdm_pipeline.joblib`).
+
+   En la consola verás un `classification_report` y el valor de Average Precision (PR-AUC). Si `joblib` no está disponible, el script avisará que omite el guardado del modelo.
+
+4. **Desactivar el entorno virtual (opcional)**
+
+   ```bash
+   deactivate
+   ```
+
+> Nota: Puedes modificar los parámetros del script (por ejemplo, horizonte de falla o configuración del modelo) editando directamente `pdm_run.py`.
